@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { AddressZero } from '@ethersproject/constants'
 import { BigNumber } from '@ethersproject/bignumber'
 import { getAddress } from '@ethersproject/address'
-import { JsonRpcProvider, TransactionResponse, JsonRpcSigner } from '@ethersproject/providers'
+import { JsonRpcProvider, TransactionResponse, TransactionReceipt, JsonRpcSigner } from '@ethersproject/providers'
 import { Token as SdkHopToken, Hop, ChainId as AllChainId } from '@hop-protocol/sdk'
 import { mainnet as mainnetAddresses } from '@hop-protocol/core/addresses'
 
@@ -37,6 +37,7 @@ export type UseHopBridgeFunctionResponse = {
   sendApproval: () => Promise<TransactionResponse>
   sendSwap: (props?: { onConfirm?: (tx: TransactionResponse) => void }) => Promise<{
     tx?: TransactionResponse
+    receipt?: TransactionReceipt
     hopExplorerLink?: string
     error?: any
     formattedMessage?: string
@@ -171,6 +172,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               const receipt = await tx.wait()
               return {
                 tx,
+                receipt,
                 hopExplorerLink: `${hopExplorerUrl}${receipt.transactionHash}`,
               }
             } else if (chainTo.isLayer1) {
@@ -195,6 +197,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
 
               return {
                 tx,
+                receipt,
                 hopExplorerLink,
               }
             } else {
@@ -216,6 +219,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               const receipt = await tx.wait()
               return {
                 tx,
+                receipt,
                 hopExplorerLink: `${hopExplorerUrl}${receipt.transactionHash}`,
               }
             }
