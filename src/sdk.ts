@@ -165,7 +165,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               })
               
               if (onConfirm) {
-                onConfirm() 
+                onConfirm(tx) 
               }
 
               const receipt = await tx.wait()
@@ -186,7 +186,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               })
               
               if (onConfirm) {
-                onConfirm() 
+                onConfirm(tx) 
               }
               
               const receipt = await tx.wait()
@@ -210,7 +210,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               })
               
               if (onConfirm) {
-                onConfirm() 
+                onConfirm(tx) 
               }
 
               const receipt = await tx.wait()
