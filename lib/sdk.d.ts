@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { JsonRpcProvider, TransactionResponse, JsonRpcSigner } from '@ethersproject/providers';
+import { JsonRpcProvider, TransactionResponse, TransactionReceipt, JsonRpcSigner } from '@ethersproject/providers';
 import { Token as SdkHopToken, ChainId as AllChainId } from '@hop-protocol/sdk';
 import { BridgeSymbol } from './config/bridge';
 import { BridgeChainName } from './config/chian';
@@ -25,6 +25,7 @@ export declare type UseHopBridgeFunctionResponse = {
         onConfirm?: (tx: TransactionResponse) => void;
     }) => Promise<{
         tx?: TransactionResponse;
+        receipt?: TransactionReceipt;
         hopExplorerLink?: string;
         error?: any;
         formattedMessage?: string;
