@@ -21,7 +21,9 @@ export declare type UseHopBridgeFunctionResponse = {
     estimation: CalculateSendResponse;
     isApprovalNeeded: boolean;
     sendApproval: () => Promise<TransactionResponse>;
-    sendSwap: () => Promise<{
+    sendSwap: (props?: {
+        onConfirm?: (tx: TransactionResponse) => void;
+    }) => Promise<{
         tx?: TransactionResponse;
         hopExplorerLink?: string;
         error?: any;

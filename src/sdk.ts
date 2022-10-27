@@ -35,7 +35,7 @@ export type UseHopBridgeFunctionResponse = {
   estimation: CalculateSendResponse
   isApprovalNeeded: boolean
   sendApproval: () => Promise<TransactionResponse>
-  sendSwap: () => Promise<{
+  sendSwap: (props?: { onConfirm?: (tx: TransactionResponse) => void }) => Promise<{
     tx?: TransactionResponse
     hopExplorerLink?: string
     error?: any
@@ -152,7 +152,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
         estimation,
         isApprovalNeeded: await isApprovalNeeded(),
         sendApproval: () => hopBridge.sendApproval(amountBN, fromChainName, toChainName),
-        sendSwap: async ({ onConfirm }: { onConfirm?: (tx: TransactionResponse) => void } = {}) => {
+        sendSwap: async ({ onConfirm } = {}) => {
           const deadline = Math.ceil(Date.now() / 1000 + Number(defaultDeadlineMinutes) * 60)
           try {
             if (chainFrom.isLayer1) {
