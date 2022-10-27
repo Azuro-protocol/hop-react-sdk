@@ -152,7 +152,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
         estimation,
         isApprovalNeeded: await isApprovalNeeded(),
         sendApproval: () => hopBridge.sendApproval(amountBN, fromChainName, toChainName),
-        sendSwap: async ({ onConfirm } = {}) => {
+        sendSwap: async ({ onConfirm }: { onConfirm?: (tx: TransactionResponse) => void } = {}) => {
           const deadline = Math.ceil(Date.now() / 1000 + Number(defaultDeadlineMinutes) * 60)
           try {
             if (chainFrom.isLayer1) {
@@ -163,9 +163,9 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
                 recipient: toAddress,
                 amountOutMin: estimation.amountOutMin,
               })
-              
+
               if (onConfirm) {
-                onConfirm(tx) 
+                onConfirm(tx)
               }
 
               const receipt = await tx.wait()
@@ -184,11 +184,11 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
                 destinationAmountOutMin: 0,
                 destinationDeadline: 0,
               })
-              
+
               if (onConfirm) {
-                onConfirm(tx) 
+                onConfirm(tx)
               }
-              
+
               const receipt = await tx.wait()
 
               const hopExplorerLink = `${hopExplorerUrl}${receipt.transactionHash}`
@@ -208,9 +208,9 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
                 destinationAmountOutMin: estimation.amountOutMin.sub(bonderFeeWithId),
                 destinationDeadline: deadline,
               })
-              
+
               if (onConfirm) {
-                onConfirm(tx) 
+                onConfirm(tx)
               }
 
               const receipt = await tx.wait()

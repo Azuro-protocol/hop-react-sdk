@@ -6,7 +6,6 @@ node_modules
 
 # builds
 build
-lib
 .rpt2_cache
 
 # misc
