@@ -170,6 +170,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               }
 
               const receipt = await tx.wait()
+
               return {
                 tx,
                 receipt,
@@ -192,7 +193,6 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               }
 
               const receipt = await tx.wait()
-
               const hopExplorerLink = `${hopExplorerUrl}${receipt.transactionHash}`
 
               return {
@@ -217,6 +217,7 @@ export function useHopBridge({ provider }: useHopBridgeProps) {
               }
 
               const receipt = await tx.wait()
+
               return {
                 tx,
                 receipt,
