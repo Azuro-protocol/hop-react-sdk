@@ -2,7 +2,12 @@ import { useCallback } from 'react'
 import { AddressZero } from '@ethersproject/constants'
 import { BigNumber } from '@ethersproject/bignumber'
 import { getAddress } from '@ethersproject/address'
-import { JsonRpcProvider, TransactionResponse, TransactionReceipt, JsonRpcSigner } from '@ethersproject/providers'
+import {
+  JsonRpcProvider,
+  TransactionResponse,
+  TransactionReceipt,
+  JsonRpcSigner,
+} from '@ethersproject/providers'
 import { Token as SdkHopToken, Hop, ChainId as AllChainId } from '@hop-protocol/sdk'
 import { mainnet as mainnetAddresses } from '@hop-protocol/core/addresses'
 
@@ -70,7 +75,7 @@ export function getHopToken(
   )
 }
 
-const getHopBridge = async ({
+export const getHopBridge = async ({
   provider,
   token: tokenName,
   tokenAmount,
@@ -88,9 +93,7 @@ const getHopBridge = async ({
 
   // verify signer
   if (!signer) {
-    throw new Error(
-      'Cannot send: the provider passed as argument does not have a valid signer.',
-    )
+    throw new Error('Cannot send: the provider passed as argument does not have a valid signer.')
   }
 
   // verify provider chainId matches chainFrom
@@ -237,10 +240,12 @@ const getHopBridge = async ({
 }
 
 export function useHopBridge({ provider }: useHopBridgeProps) {
-  return useCallback(() => (args: Omit<BridgeSendParams, 'provider'>) => getHopBridge({
-    provider,
-    ...args
-  }),
+  return useCallback(
+    () => (args: Omit<BridgeSendParams, 'provider'>) =>
+      getHopBridge({
+        provider,
+        ...args,
+      }),
     [provider],
   )
 }
