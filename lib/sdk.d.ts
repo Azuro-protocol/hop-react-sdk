@@ -9,6 +9,7 @@ declare type useHopBridgeProps = {
     provider: JsonRpcProvider;
 };
 declare type BridgeSendParams = {
+    provider: JsonRpcProvider;
     token: BridgeSymbol;
     fromChainName: BridgeChainName;
     toChainName: BridgeChainName;
@@ -32,5 +33,5 @@ export declare type UseHopBridgeFunctionResponse = {
     }>;
 };
 export declare function getHopToken(signer: JsonRpcSigner, tokenName: BridgeSymbol, chainName: BridgeChainName): SdkHopToken;
-export declare function useHopBridge({ provider }: useHopBridgeProps): ({ token: tokenName, tokenAmount, fromChainName, toChainName, toAddress: toAddressRaw, slippageTolerance, }: BridgeSendParams) => Promise<UseHopBridgeFunctionResponse>;
+export declare function useHopBridge({ provider }: useHopBridgeProps): () => (args: Omit<BridgeSendParams, 'provider'>) => Promise<UseHopBridgeFunctionResponse>;
 export {};
