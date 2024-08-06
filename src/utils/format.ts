@@ -1,5 +1,5 @@
 import { BigNumber, FixedNumber } from '@ethersproject/bignumber'
-import { parseUnits } from '@ethersproject/units'
+import { utils } from 'ethers'
 
 import Network from '../models/Network'
 import { prettifyErrorMessage } from './prettifyErrorMessage'
@@ -100,5 +100,5 @@ export function fixedDecimals(amount: string, decimals: number = 18) {
 
 export function amountToBN(amount: string | number, decimals: number = 18) {
   const fixedAmount = fixedDecimals(amount.toString(), decimals)
-  return parseUnits(fixedAmount || '0', decimals)
+  return utils.parseUnits(fixedAmount || '0', decimals)
 }

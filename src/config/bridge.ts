@@ -24,7 +24,7 @@ export const bridgeTokens: Record<BridgeSymbol, TokenModel> = bridgeSymbols.redu
       tokenName: tokenInfo.name,
       decimals: tokenInfo.decimals,
       imageUrl: '',
-      supportedNetworks: Object.keys(mainnetAddresses.bridges[symbol]),
+      supportedNetworks: Object.keys(mainnetAddresses.bridges[symbol] || {}),
     })
 
     return acc

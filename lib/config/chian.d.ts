@@ -9,7 +9,6 @@ declare type ChainInfo = {
     publicRpcUrl: string | undefined;
     explorerUrls: string[];
     nativeBridgeUrl: string | undefined;
-    waitConfirmations: number;
     isLayer1: boolean;
 };
 export declare const bridgeChains: Record<BridgeChainName, ChainInfo>;

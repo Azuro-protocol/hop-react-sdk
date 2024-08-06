@@ -40,7 +40,6 @@ type ChainInfo = {
   publicRpcUrl: string | undefined
   explorerUrls: string[]
   nativeBridgeUrl: string | undefined
-  waitConfirmations: number
   isLayer1: boolean
 }
 
@@ -59,7 +58,6 @@ export const bridgeChains: Record<BridgeChainName, ChainInfo> = bridgeChainNames
       publicRpcUrl: chainInfo.publicRpcUrl,
       explorerUrls: chainInfo.explorerUrls,
       nativeBridgeUrl: chainInfo.nativeBridgeUrl,
-      waitConfirmations: chainInfo.waitConfirmations,
       isLayer1: chainIsLayer1[name],
     }
 

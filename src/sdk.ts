@@ -57,11 +57,11 @@ export function getHopToken(
 ): SdkHopToken {
   const token = bridgeTokens[tokenName]
 
-  const tokenBridge = mainnetAddresses.bridges[tokenName][chainName] as {
+  const tokenBridge = mainnetAddresses.bridges[tokenName]?.[chainName] as {
     l1CanonicalToken?: string
     l2CanonicalToken?: string
   }
-  const tokenAddress = (tokenBridge.l1CanonicalToken ?? tokenBridge.l2CanonicalToken) as string
+  const tokenAddress = (tokenBridge?.l1CanonicalToken ?? tokenBridge?.l2CanonicalToken) as string
 
   return new SdkHopToken(
     'mainnet',
